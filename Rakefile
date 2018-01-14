@@ -4,7 +4,10 @@
 # for example lib/tasks/capistrano.rake, and they will automatically be available to Rake.
 
 require_relative 'config/application'
-require 'rubocop/rake_task'
 
-RuboCop::RakeTask.new
+if Gem.loaded_specs.key?('rubocop')
+  require 'rubocop/rake_task'
+  RuboCop::RakeTask.new
+end
+
 Rails.application.load_tasks
