@@ -1,0 +1,27 @@
+require: rubocop-rspec
+inherit_from: .rubocop_todo.yml
+AllCops:
+  TargetRubyVersion: 2.4
+  Include:
+    - Rakefile
+    - Guardfile
+    - config.ru
+    - lib/**/*.rake
+  Exclude:
+    - db/schema.rb
+    - bin/**/*
+Metrics/LineLength:
+  IgnoredPatterns: ['\A\s*#']
+Naming/FileName:
+  Exclude:
+    - 'Gemfile'
+Metrics/BlockLength:
+  ExcludedMethods:
+    - guard
+Style/Documentation:
+  Exclude:
+    - 'spec/**/*'
+    - 'test/**/*'
+    - 'app/mailers/application_mailer.rb'
+    - 'app/models/application_record.rb'
+    - 'config/application.rb'
