@@ -1,0 +1,11 @@
+#!/bin/bash
+
+set -e
+
+if [ -x $0.local ]; then
+    $0.local "$@"
+fi
+
+if [ -x git_hooks/$(basename $0) ]; then
+  git_hooks/$(basename $0) "$@"
+fi

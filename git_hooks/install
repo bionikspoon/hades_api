@@ -1,0 +1,16 @@
+#!/bin/bash
+
+HOOK_NAMES="applypatch-msg pre-applypatch post-applypatch pre-commit prepare-commit-msg commit-msg post-commit pre-rebase post-checkout post-merge pre-receive update post-receive post-update pre-auto-gc"
+HOOK_DIR=$(git rev-parse --show-toplevel)/.git/hooks
+
+for hook in $HOOK_NAMES; do
+  # if hook already exists and isn't a symlink
+  if [ ! -h $HOOK_DIR/$hook -a -x $HOOK_DIR/$hook ]; then
+    echo "moving $HOOK_DIR/$hook -> $HOOK_DIR/$hook.local"
+    mv $HOOK_DIR/$hook $HOOK_DIR/$hook.local
+  fi
+
+  ln -s -f ../../git_hooks/wrapper $HOOK_DIR/$hook
+done
+
+echo "git hooks installed"

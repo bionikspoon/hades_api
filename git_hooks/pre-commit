@@ -1,0 +1,7 @@
+#!/bin/bash
+
+set -e
+
+echo "rubocop"
+git diff --cached --name-only --diff-filter=ACM | xargs rubocop &
+wait $!
