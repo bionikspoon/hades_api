@@ -6,4 +6,5 @@
   tmp/restart.txt
   tmp/caching-dev.txt
   app/services
+  lib
 ].each { |path| Spring.watch(path) }
